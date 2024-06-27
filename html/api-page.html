@@ -1,0 +1,363 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous&display=swap" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/api-page.css">
+    <script src="../js/api-page.js"></script>
+    <script src="../js/homepage.js"></script>
+</head>
+
+<body onload="get();fetchData()">
+
+    <!-- Responsive NavBar -->
+    <nav class="navbar navbar-dark bg-warning navbar-expand-sm fixed-top">
+        <div class="container"> <a href="../index.html" class="navbar-brand text-dark">Commute Aggregator</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#idNav"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="idNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="https://www.uber.com/in/en/" target="_blank"
+                            class="text-dark nav-link">Uber</a></li>
+                    <li class="nav-item"><a href="https://www.olacabs.com/" target="_blank"
+                            class="text-dark nav-link">Ola</a></li>
+                    <li class="nav-item"><a href="../html/contact-us.html" class="text-dark nav-link">Contact Us</a>
+                    </li>
+                    <li class="nav-item"><a href="../index.html" class="text-dark nav-link">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page heading -->
+    <div class="container" style="text-align: center">
+        <div class="row">
+            <div class="col-md headingtext">
+                <div class="content display-3 text-uppercase text-warning">Book a Cab!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- From-To Form -->
+    <div class="container pb-4">
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <form id="book_car" name="book_car" method="post" action="../php/booking.php">
+                        <div class="form-group">
+                            <label for="from">From:</label>
+                            <input type="text" class="form-control" name="from" id="from" required>
+                        </div>
+                        <center>
+                            <div>
+                                <button type="button" class="btn btn-warning" id="search-and-compare"
+                                    onclick="swapItems()">
+                                    <img src="../media/swap.png" width="20" height="20" />
+                                </button>
+                            </div>
+                        </center>
+                        <div class="form-group">
+                            <label for="to">To:</label>
+                            <input type="text" class="form-control" name="to" id="to" required>
+                        </div>
+                        <center>
+                            <div>
+                                <button type="button" class="btn btn-warning" onclick="window.location.reload(); set();">Search and Compare</button>
+                            </div>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split Screen -->
+    <div class="split-container">
+        <div class="split-left">
+            <div class="split-left-content">
+                <table>
+                    <tr>
+                        <th colspan="3">
+                            <img src="../media/UberLogo.png" width="100">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/Olacar3.png" width="50" class="imgBottom">
+                            <p>Go</p>
+                        </td>
+                        <td>
+                            <p id="price1">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 3 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/olac1.png" width="50" class="imgBottom">
+                            <p>Go</p>
+                        </td>
+                        <td>
+                            <p id="price2">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 3 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/olac2.png" width="50" class="imgBottom">
+                            <p>Sedan</p>
+                        </td>
+                        <td>
+                            <p id="price3">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 4 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/sedan.png" width="50" class="imgBottom">
+                            <p>Premium</p>
+                        </td>
+                        <td>
+                            <p id="price4">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 4 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/suv.png" width="50" class="imgBottom">
+                            <p>Executive</p>
+                        </td>
+                        <td>
+                            <p id="price5">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 7 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book now</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="split-right-content">
+                <table>
+                    <tr>
+                        <th colspan="3">
+                            <img src="../media/olaLogo.png" width="100">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/Olacar3.png" width="50" class="imgBottom">
+                            <p>Go</p>
+                        </td>
+                        <td>
+                            <p id="price6">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 3 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/olac1.png" width="50" class="imgBottom">
+                            <p>Go</p>
+                        </td>
+                        <td>
+                            <p id="price7">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 3 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/olac2.png" width="50" class="imgBottom">
+                            <p>Sedan</p>
+                        </td>
+                        <td>
+                            <p id="price8">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 4 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/sedan.png" width="50" class="imgBottom">
+                            <p>Premium</p>
+                        </td>
+                        <td>
+                            <p id="price9">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 4 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../media/suv.png" width="50" class="imgBottom">
+                            <p>Executive</p>
+                        </td>
+                        <td>
+                            <p id="price10">Price: </p>
+                            <p class="logoCount" id="countP"> <img src="../media/passengericon.png"> &nbsp; 7 </p>
+                        </td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn bg-warning" id="book_now" name="book_now"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Book
+                                    now</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmation -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Booking Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to proceed with booking?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-danger" data-dismiss="modal">No</button>
+                    <button type="button" class="btn bg-success" data-dismiss="modal" data-toggle="modal"
+                        data-target="#modalBooked">Yes!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Booking Confirm-->
+    <div class="modal fade" id="modalBooked" tabindex="-1" role="dialog" aria-labelledby="modalBookedTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBookedLongTitle">Booking Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Your car has been Booked! Check app for the details.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="handleBookingFormSubmit()" class="btn bg-success"
+                        data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function set() {
+            var from = document.getElementById("from").value;
+            localStorage.setItem('fromLoc', from);
+            var to = document.getElementById("to").value;
+            localStorage.setItem('toLoc', to);
+        }
+        function get() {
+            var from = localStorage.getItem('fromLoc');
+            document.getElementById("from").value = from;
+            var to = localStorage.getItem('toLoc');
+            document.getElementById("to").value = to;
+        }
+        function handleBookingFormSubmit() {
+            event.preventDefault();
+            const form = document.getElementById('book_car');
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        console.log(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+
+</html>
